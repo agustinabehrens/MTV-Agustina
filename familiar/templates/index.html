@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familiares</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Parentezco</td>
+                    <td>Edad</td>
+                    <td>Fecha Nacimiento</td>
+                    <td>Ocupacion</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for familiar in familiar %}
+                    <tr>
+                        <td>{{ familiar.nombre }}</td>
+                        <td>{{ familiar.parentezco }}</td>
+                        <td>{{ familiar.edad }}</td>
+                        <td>{{ familiar.fecha_nacimiento }}</td>
+                        <td>{{ familiar.ocupacion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{% url 'create_familiar' %}" method="POST">
+            {% csrf_token %}
+            <h1>Crear Familiar</h1>
+            <input type="text" name="nombre" placeholder="Ingrese el nombre">
+            <input type="text" name="parentezco" placeholder="Ingrese el parentezco">
+            <input type="text" name="edad" placeholder="Ingrese la edad">
+            <input type="text" name="fecha_nacimiento" placeholder="Ingrese fecha de nacimiento">
+            <input type="text" name="ocupacion" placeholder="Ingrese ocupación">
+            <button type="sumbit">Guardar</button>
+        </form>
+    
+    </div>
+</body>
+</html>
