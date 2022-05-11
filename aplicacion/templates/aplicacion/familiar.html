@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "aplicacion/padre.html" %}
+
+{% load static %}
+
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Familiares</title>
 </head>
 <body>
@@ -19,6 +19,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 {% for familiar in familiar %}
                     <tr>
                         <td>{{ familiar.nombre }}</td>
@@ -30,17 +31,17 @@
                 {% endfor %}
             </tbody>
         </table>
-        <form action="{% url 'create_familiar' %}" method="POST">
+                       
+        <form action="{% url 'familiar' %}" method="POST">
             {% csrf_token %}
-            <h1>Crear Familiar</h1>
-            <input type="text" name="nombre" placeholder="Ingrese el nombre">
-            <input type="text" name="parentezco" placeholder="Ingrese el parentezco">
-            <input type="text" name="edad" placeholder="Ingrese la edad">
-            <input type="text" name="fecha_nacimiento" placeholder="Ingrese fecha de nacimiento">
-            <input type="text" name="ocupacion" placeholder="Ingrese ocupación">
-            <button type="sumbit">Guardar</button>
+            <table>
+                {{formulario.as_table}}
+            </table>
+            <input type="submit", value="Enviar">
+
+
         </form>
     
     </div>
 </body>
-</html>
+{% endblock %}

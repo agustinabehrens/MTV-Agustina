@@ -1,0 +1,42 @@
+{% extends "aplicacion/padre.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+    <title>Materias</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Area</td>
+                    <td>Creditos</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+                {% for materia in materia %}
+                    <tr>
+                        <td>{{ materia.nombre }}</td>
+                        <td>{{ materia.area }}</td>
+                        <td>{{ materia.creditos }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{% url 'materia' %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{formulario.as_table}}
+            </table>
+            <input type="submit", value="Enviar">
+
+        </form>
+    
+    </div>
+</body>
+{% endblock %}

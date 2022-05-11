@@ -1,0 +1,44 @@
+{% extends "aplicacion/padre.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+    <title>Estudiantes</title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Carrera</td>
+                    <td>Edad</td>
+                    <td>Fecha de nacimiento</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+                {% for estudiante in estudiante %}
+                    <tr>
+                        <td>{{ estudiante.nombre }}</td>
+                        <td>{{ estudiante.carrera }}</td>
+                        <td>{{ estudiante.edad }}</td>
+                        <td>{{ estudiante.fecha_nacimiento }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{% url 'estudiante' %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{formulario.as_table}}
+            </table>
+            <input type="submit", value="Enviar">
+
+        </form>
+    
+    </div>
+</body>
+{% endblock %}
